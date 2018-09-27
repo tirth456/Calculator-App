@@ -34,19 +34,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var ResultText: UITextField!
     
     func calculations (Number1:Double, Number2:Double) -> Double {
-        var tempResult:Double = 0
+        var temp:Double = 0
         switch MathOperation {
         case 11:
-            tempResult = Number1 + Number2
+            temp = Number1 + Number2
         case 12:
-            tempResult = Number1 - Number2
+            temp = Number1 - Number2
         case 13:
-            tempResult = Number1 * Number2
+            temp = Number1 * Number2
         case 14:
-            tempResult = Number1 / Number2
+            temp = Number1 / Number2
         default: break
         }
-        return tempResult
+        return temp
     }
 
     
@@ -54,12 +54,12 @@ class ViewController: UIViewController {
     
     @IBAction func NumbersButton(_ sender: UIButton) {
         
-        if !isInput { //check if operation button pressed inorder to start recording new variable
+        if !isInput {
             ResultText.text = String(sender.tag)
             isInput = true
         }
         else {
-                        ResultText.text?.append(String(sender.tag))
+                ResultText.text?.append(String(sender.tag))
         }
         NumberOnScreen = Double(ResultText.text!)!
 
@@ -134,9 +134,9 @@ class ViewController: UIViewController {
 //        NumberOnScreen=Double(String(ResultText.text!))!
         if isMath { //are we in process of calculation chain
             switch sender.tag {
-            case 11, 12, 13, 14: //Adding, Multiplications, Division, Minus operations
+            case 11, 12, 13, 14: //Addition, Substraction Multiplication and Division operation
                 
-                if !isEqual {// if equals not pressed continue chain otherwise restar calculations chain and wait for 2nd number
+                if !isEqual  {//isequal flag set for getting new number after pressing =
                     SecondNumber = NumberOnScreen
                     CalcResult = calculations(Number1: Firstnumber, Number2: SecondNumber)
                     Firstnumber = CalcResult
@@ -159,8 +159,8 @@ class ViewController: UIViewController {
             hasDecimal = false
             isMath = true
         }
-        isInput = false //set flag to start input new number
-        hasDecimal = false //reset dot flag for new number input
+        isInput = false //reset new number flag
+        hasDecimal = false //reset dot flag
     }
     
     @IBAction func PlusMinus(_ sender: UIButton) {
@@ -169,6 +169,20 @@ class ViewController: UIViewController {
     }
     
     @IBAction func Percentage(_ sender: UIButton) {
+        if(isPercentage == true)  {
+            var temp:Double = 0
+            temp = Double(ResultText.text!)!
+            temp = temp / 100;
+            temp = Firstnumber * temp
+            ResultText.text = String(temp)
+            isPercentage = false
+        }
+        else    {
+            var temp:Double = 0
+            temp = Double(ResultText.text!)!
+            temp = temp / 100;
+            ResultText.text = String(temp)
+        }
     }
     
     @IBAction func EqualButton(_ sender: UIButton) {
