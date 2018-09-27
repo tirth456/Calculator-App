@@ -13,20 +13,21 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ResultText.text = "0"
+        ResultText.text = ""
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     var isMath:Bool = false // is Math operation pressed
 
-    var Firstnumber:Double = 0 // left side of calculations
-    var SecondNumber:Double = 0 // right side of calcultions
-    var NumberOnScreen: Double = 0.0//number on screen
-    var CalcResult:Double = 0 // result of calculations
-    var MathOperation:Int = 0 // selected ID of operation
-    var hasDecimal:Bool = false//is Dot pressed
-    var isEqual:Bool = false //is equals pressed
-    var isInput:Bool = false //checks if input number is in progress
+    var Firstnumber:Double = 0
+    var SecondNumber:Double = 0
+    var NumberOnScreen: Double = 0.0
+    var CalcResult:Double = 0
+    var MathOperation:Int = 0
+    var hasDecimal:Bool = false
+    var isEqual:Bool = false
+    var isInput:Bool = false
+    var isPercentage:Bool = false
     
     
     
@@ -52,35 +53,44 @@ class ViewController: UIViewController {
 
     
     @IBAction func NumbersButton(_ sender: UIButton) {
-
-        if(ResultText.text == "0") {
-            
-            if(sender.tag != -1) {
-                ResultText.text = ""
-                
-            }
-            else {
-                if(hasDecimal) {
-                    ResultText.text = "0"
-                }
-            }
-            
-        }
         
-        if(sender.tag == -1) {
-            if(!hasDecimal) {
-                ResultText.text?.append(".")
-                hasDecimal = true
-            }
+        if !isInput { //check if operation button pressed inorder to start recording new variable
+            ResultText.text = String(sender.tag)
+            isInput = true
         }
         else {
-            ResultText.text?.append(String(sender.tag))
-            isInput = true
-
-            
+                        ResultText.text?.append(String(sender.tag))
         }
-        
-      NumberOnScreen=Double(ResultText.text!)!
+        NumberOnScreen = Double(ResultText.text!)!
+
+//        if(ResultText.text == "0") {
+//
+//            if(sender.tag != -1) {
+//                ResultText.text = ""
+//
+//            }
+//            else {
+//                if(hasDecimal) {
+//                    ResultText.text = "0"
+//                }
+//            }
+//
+//        }
+//
+//        if(sender.tag == -1) {
+//            if(!hasDecimal) {
+//                ResultText.text?.append(".")
+//                hasDecimal = true
+//            }
+//        }
+//        else {
+//            ResultText.text?.append(String(sender.tag))
+//            isInput = true
+//
+//
+//        }
+//
+//      NumberOnScreen=Double(ResultText.text!)!
 
     
        
@@ -89,6 +99,15 @@ class ViewController: UIViewController {
 //    NumberOnScreen=Double(ResultTextfield.text!)!
         
     }
+    
+    @IBAction func DotButton(_ sender: UIButton) {
+        
+        if !hasDecimal {
+                ResultText.text?.append(".")
+                hasDecimal = true
+        }
+    }
+    
     
     @IBAction func ClearScreen(_ sender: UIButton) {
         ResultText.text = "0" //reset text in UI
@@ -132,7 +151,7 @@ class ViewController: UIViewController {
             
             default:
                 ResultText.text = "Error"
-            }
+            }   
         }
         else {
             Firstnumber = Double(ResultText.text!)!
@@ -142,6 +161,14 @@ class ViewController: UIViewController {
         }
         isInput = false //set flag to start input new number
         hasDecimal = false //reset dot flag for new number input
+    }
+    
+    @IBAction func PlusMinus(_ sender: UIButton) {
+        NumberOnScreen = -Double(ResultText.text!)!
+        ResultText.text = String(NumberOnScreen)
+    }
+    
+    @IBAction func Percentage(_ sender: UIButton) {
     }
     
     @IBAction func EqualButton(_ sender: UIButton) {

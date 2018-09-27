@@ -27,7 +27,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="NumbersButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L0w-mQ-cGr"/>
+                                    <action selector="DotButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vow-Hj-znr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qet-0z-SVY">
@@ -182,6 +182,9 @@
                                 <state key="normal" title="%">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="Percentage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XZD-LT-bDL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="14" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdO-eZ-Bim">
                                 <rect key="frame" x="283" y="199" width="92" height="92"/>
@@ -239,6 +242,9 @@
                                 <state key="normal" title="±">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="PlusMinus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0op-wm-wHx"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="fill" text=" " borderStyle="line" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YW9-UM-GVz" userLabel="Result Area">
                                 <rect key="frame" x="0.0" y="44" width="375" height="150"/>
