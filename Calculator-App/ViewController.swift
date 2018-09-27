@@ -32,22 +32,7 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var ResultText: UITextField!
-    
-    func calculations (Number1:Double, Number2:Double) -> Double {
-        var temp:Double = 0
-        switch MathOperation {
-        case 11:
-            temp = Number1 + Number2
-        case 12:
-            temp = Number1 - Number2
-        case 13:
-            temp = Number1 * Number2
-        case 14:
-            temp = Number1 / Number2
-        default: break
-        }
-        return temp
-    }
+ 
 
     
 
@@ -103,14 +88,17 @@ class ViewController: UIViewController {
     @IBAction func DotButton(_ sender: UIButton) {
         
         if !hasDecimal {
+//            if(ResultText.text == "0"){
                 ResultText.text?.append(".")
                 hasDecimal = true
+//            }
         }
+        
     }
     
     
     @IBAction func ClearScreen(_ sender: UIButton) {
-        ResultText.text = "0" //reset text in UI
+        ResultText.text = "0" //reset text in textfield
         hasDecimal = false
         //reset all flags
         isMath = false
@@ -132,7 +120,7 @@ class ViewController: UIViewController {
     @IBAction func CalFunction(_ sender: UIButton)
     {
 //        NumberOnScreen=Double(String(ResultText.text!))!
-        if isMath { //are we in process of calculation chain
+        if isMath { //for calculation process
             switch sender.tag {
             case 11, 12, 13, 14: //Addition, Substraction Multiplication and Division operation
                 
@@ -156,11 +144,26 @@ class ViewController: UIViewController {
         else {
             Firstnumber = Double(ResultText.text!)!
             MathOperation = sender.tag
-            hasDecimal = false
             isMath = true
         }
         isInput = false //reset new number flag
         hasDecimal = false //reset dot flag
+    }
+    
+    func calculations (Number1:Double, Number2:Double) -> Double {
+        var temp:Double = 0
+        switch MathOperation {
+        case 11:
+            temp = Number1 + Number2
+        case 12:
+            temp = Number1 - Number2
+        case 13:
+            temp = Number1 * Number2
+        case 14:
+            temp = Number1 / Number2
+        default: break
+        }
+        return temp
     }
     
     @IBAction func PlusMinus(_ sender: UIButton) {
