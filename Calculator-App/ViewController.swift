@@ -32,7 +32,22 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var ResultText: UITextField!
- 
+    
+    func calculations (Number1:Double, Number2:Double) -> Double {
+        var temp:Double = 0
+        switch MathOperation {
+        case 11:
+            temp = Number1 + Number2
+        case 12:
+            temp = Number1 - Number2
+        case 13:
+            temp = Number1 * Number2
+        case 14:
+            temp = Number1 / Number2
+        default: break
+        }
+        return temp
+    }
 
     
 
@@ -88,17 +103,16 @@ class ViewController: UIViewController {
     @IBAction func DotButton(_ sender: UIButton) {
         
         if !hasDecimal {
-//            if(ResultText.text == "0"){
                 ResultText.text?.append(".")
                 hasDecimal = true
-//            }
+            
         }
         
     }
     
     
     @IBAction func ClearScreen(_ sender: UIButton) {
-        ResultText.text = "0" //reset text in textfield
+        ResultText.text = "0" //reset text in UI
         hasDecimal = false
         //reset all flags
         isMath = false
@@ -142,28 +156,16 @@ class ViewController: UIViewController {
             }   
         }
         else {
+            if isInput{
             Firstnumber = Double(ResultText.text!)!
             MathOperation = sender.tag
-            isMath = true
+                isMath = true}
+            else {
+                
+            }
         }
         isInput = false //reset new number flag
         hasDecimal = false //reset dot flag
-    }
-    
-    func calculations (Number1:Double, Number2:Double) -> Double {
-        var temp:Double = 0
-        switch MathOperation {
-        case 11:
-            temp = Number1 + Number2
-        case 12:
-            temp = Number1 - Number2
-        case 13:
-            temp = Number1 * Number2
-        case 14:
-            temp = Number1 / Number2
-        default: break
-        }
-        return temp
     }
     
     @IBAction func PlusMinus(_ sender: UIButton) {
