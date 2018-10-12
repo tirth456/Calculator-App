@@ -169,11 +169,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func PlusMinus(_ sender: UIButton) {
+        if isMath{
         NumberOnScreen = -Double(ResultText.text!)!
         ResultText.text = String(NumberOnScreen)
     }
-    
+    }
     @IBAction func Percentage(_ sender: UIButton) {
+        if isMath{
         if(isPercentage == true)  {
             var temp:Double = 0
             temp = Double(ResultText.text!)!
@@ -189,7 +191,7 @@ class ViewController: UIViewController {
             ResultText.text = String(temp)
         }
     }
-    
+    }
     @IBAction func EqualButton(_ sender: UIButton) {
         if isMath { //check if there is calculations to be done
             CalcResult = calculations(Number1: Firstnumber, Number2: NumberOnScreen)
